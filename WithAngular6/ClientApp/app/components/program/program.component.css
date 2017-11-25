@@ -1,0 +1,26 @@
+
+#ex-name{
+    display:inline-block;
+    font-size:30px;    
+}
+#repstimesets{
+    display:inline-block;
+    
+}
+
+#ex-description{
+    font-size:20px;
+}
+
+#ex-list{
+    width:700px;
+    float:left;
+}
+#logs-list{
+    margin-left:710px;
+    width:300px;
+}
+
+.clear {
+    clear: both;
+  }

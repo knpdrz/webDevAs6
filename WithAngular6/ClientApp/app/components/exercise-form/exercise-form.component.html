@@ -1,0 +1,42 @@
+<div class="container">
+    <h3>Exercise Form</h3>
+    <form  #exerciseForm="ngForm" (ngSubmit)="onSubmit(exerciseForm)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name"
+        required
+        [(ngModel)]="name" #mname="ngModel">
+        <div *ngIf="mname.invalid && (mname.dirty || mname.touched)"
+      class="alert alert-danger">name can't be empty</div>
+      </div>
+
+      <div class="form-group">
+        <label for="repstime">Reps/time</label>
+        <input type="text" class="form-control" id="repstime" 
+        required
+        [(ngModel)]="repstime" name="repstime" #mrepstime="ngModel">
+        <div *ngIf="mrepstime.invalid && (mrepstime.dirty || mrepstime.touched)"
+        class="alert alert-danger">reps/time field can't be empty</div>  
+      </div>
+      <div class="form-group">
+        <label for="sets">Sets</label>
+        <input type="number" class="form-control" id="sets" 
+        required
+        [(ngModel)]="sets" name="sets" #msets="ngModel">
+        <div *ngIf="msets.invalid && (msets.dirty || msets.touched)"
+        class="alert alert-danger">sets number can't be empty</div>
+  
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description"
+        [(ngModel)]="description" name="description">
+        
+      </div>
+
+      
+      <button type="submit" class="btn btn-success" 
+      [disabled]="!exerciseForm.control.valid">
+      Add exercise</button>
+    </form>
+</div>

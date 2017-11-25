@@ -1,0 +1,12 @@
+#program-name-input{
+    width:500px;
+}
+
+#add-btn , #program-name-input {
+    display:inline-block;
+}
+
+#add-program-box{
+    width:800px; 
+    margin:0 auto;
+}

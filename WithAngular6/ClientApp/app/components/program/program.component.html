@@ -1,0 +1,49 @@
+<!--<div *ngIf="!auth.loggedIn() && showAlert" class="alert alert-danger">you have to be logged in to create an exercise or log workout</div>-->
+<div *ngIf="program">
+  <h2>{{program.name}} details</h2>
+  <!--exercises list-->    
+ <div id="ex-list">
+    <h5>exercises list</h5>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let exercise of program.exercises">
+        &nbsp;
+        <div id="ex-name">{{exercise.name}}</div>
+        &nbsp;
+        <div id="repstimesets">
+          repstime: {{exercise.repstime}} &nbsp; 
+          sets: {{exercise.sets}} &nbsp; 
+        </div>
+       
+        <br>
+        <div id="ex-description">{{exercise.description}}</div>
+      </li>
+    </ul>
+    <br>
+  </div>
+  <div id="logs-list" >
+    <h5>logs list</h5>
+    <ul class="logs list-group">
+      <li class="list-group-item" *ngFor="let log of program.logs">
+        {{log.username}}
+        <br>
+        {{log.date | date}}
+      </li>
+    </ul>
+    <br>
+    
+  </div>
+  <div class="clear"></div>
+
+  <!--exercise form-->    
+  <!--<div id="ex-form">
+    <exercise-form (exerciseFormSubmitted)="exerciseFormSubmitted($event)"></exercise-form>
+  </div>
+  <br>
+
+
+  <log-form (logFormSubmitted)="logFormSubmitted($event)"></log-form>
+  <br>
+  <button class="btn btn-outline-success" (click)="goBack()">Back</button> 
+ -->
+</div>
+

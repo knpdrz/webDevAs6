@@ -1,0 +1,26 @@
+<div class="container">
+    <h3>Log Form</h3>
+    <form  #logForm="ngForm" (ngSubmit)="onSubmit(logForm)">
+    <!--  <div class="form-group">
+        <label for="username">Name</label>
+        <input type="text" class="form-control" id="username" 
+        required
+        [(ngModel)]="username" name="username" #musername="ngModel">
+        <div *ngIf="musername.invalid && (musername.dirty || musername.touched)"
+        class="alert alert-danger">name can't be empty</div>
+      </div>-->
+
+      <div class="form-group">
+        <label for="date">Date of completion</label>
+        <input type="date" class="form-control" id="date" 
+        required
+        [(ngModel)]="date" name="date" #mdate="ngModel">
+        <div *ngIf="mdate.invalid && (mdate.dirty || mdate.touched)"
+        class="alert alert-danger">date field can't be empty</div>
+      </div>
+           
+      <button type="submit" class="btn btn-success"
+      [disabled]="!logForm.control.valid">
+        Log workout</button>
+    </form>
+</div>
