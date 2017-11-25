@@ -16,7 +16,6 @@ export class HomeListComponent implements OnInit {
   constructor(private programDataService :ProgramDataService,
   private auth: AuthService) { }
     
-  selectedProgram: Program;
   programs: Program[];
 
 
@@ -31,19 +30,14 @@ export class HomeListComponent implements OnInit {
               this.programs = foundPrograms;
           });
   }
-
-  onSelect(program: Program): void {
-      this.selectedProgram = program;
-  }
-    /*
+    
   add(name: string): void {
       name = name.trim();
       if (!name) { return; }
       this.programDataService.create(name)
           .then(program => {
               this.programs.push(program);
-              this.selectedProgram = null;
           });
-  }*/
+  }
     
 }

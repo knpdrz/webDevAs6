@@ -12,6 +12,8 @@ import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeListComponent } from './components/home-list/home-list.component';
 import { ProgramComponent } from './components/program/program.component';
+import { ExerciseFormComponent } from './components/exercise-form/exercise-form.component';
+import { LogFormComponent } from './components/log-form/log-form.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { ProgramComponent } from './components/program/program.component';
         HomeComponent,
         LoginComponent,
         HomeListComponent,
-        ProgramComponent
+        ProgramComponent,
+        ExerciseFormComponent,
+        LogFormComponent
     ],
     imports: [
         CommonModule,
@@ -31,8 +35,6 @@ import { ProgramComponent } from './components/program/program.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
             { path: 'programs/:name', component: ProgramComponent },
 
             { path: '**', redirectTo: 'home' }

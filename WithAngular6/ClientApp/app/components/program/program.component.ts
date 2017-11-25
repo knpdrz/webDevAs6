@@ -51,28 +51,24 @@ export class ProgramComponent implements OnInit {
 
           });
   }
-    /*
-  goBack(): void {
-    this.location.back();
-  }
-
+    
   exerciseFormSubmitted(exercise:Exercise):void{
-    if(this.auth.loggedIn()){
+    //if(this.auth.loggedIn()){
       this.showAlert = false;
       this.programDataService
       .createExercise(this.program.name, exercise)
       .then((exercise)=>{
         this.program.exercises.push(exercise);
       });
-    }else{
+    /*}else{
       this.showAlert = true;
       console.log("you have to be logged in to create an exercise");
-    }
+    }*/
     
   }
 
   logFormSubmitted(log:Log):void{
-    if(this.auth.loggedIn()){
+ //   if(this.auth.loggedIn()){
       this.showAlert = false;
       
       this.programDataService
@@ -80,12 +76,10 @@ export class ProgramComponent implements OnInit {
       .then((log)=>{
         this.program.logs.push(log);
       });
-    }else{
+   /* }else{
       this.showAlert = true;
       
-    }
+    }*/
   }
-  */
-
 
 }

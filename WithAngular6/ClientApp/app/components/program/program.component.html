@@ -1,6 +1,6 @@
 <!--<div *ngIf="!auth.loggedIn() && showAlert" class="alert alert-danger">you have to be logged in to create an exercise or log workout</div>-->
 <div *ngIf="program">
-  <h2>{{program.name}} details</h2>
+  <h2><span class="text-info">{{program.name}}</span> details</h2>
   <!--exercises list-->    
  <div id="ex-list">
     <h5>exercises list</h5>
@@ -31,19 +31,18 @@
     </ul>
     <br>
     
-  </div>
+  </div> 
   <div class="clear"></div>
 
   <!--exercise form-->    
-  <!--<div id="ex-form">
+ <div id="ex-form">
     <exercise-form (exerciseFormSubmitted)="exerciseFormSubmitted($event)"></exercise-form>
   </div>
   <br>
-
-
+    
+  <!--log form-->
   <log-form (logFormSubmitted)="logFormSubmitted($event)"></log-form>
   <br>
-  <button class="btn btn-outline-success" (click)="goBack()">Back</button> 
- -->
+ 
 </div>
 

@@ -30,7 +30,6 @@ namespace WithAngular6
         {
             if(_context.WorkoutPrograms == null)
             {
-                _logger.LogInformation("!!!!!!!!!!!! wp are null");
                 return null;
             }
             _logger.LogInformation("!!!!!!!!!!!! in get with " + _context.WorkoutPrograms.Count());
@@ -41,9 +40,6 @@ namespace WithAngular6
         [HttpGet("{name}", Name = "GetProgram")]
         public IActionResult GetByName(string name)
         {
-            /*var item =  _context.WorkoutPrograms
-                .FirstOrDefault(wp => wp.Name == name);*/
-            
             if (name == null)
             {
                 return NotFound();
@@ -57,22 +53,54 @@ namespace WithAngular6
            
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Create([FromBody] WorkoutProgram program)
         {
+            _context.WorkoutPrograms.Add(program);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetProgram", new { name = program.Name }, program);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPost("{name}/exercises")]
+        public IActionResult CreateExercise(string name, [FromBody] Exercise exercise)
         {
+            if (name == null)
+            {
+                return BadRequest();
+            }
+            //get program to which we want to add to
+            var program = _context.WorkoutPrograms
+                .Include(wp => wp.exercises)
+                .Include(wp => wp.logs)
+                .SingleOrDefault(m => m.Name == name);
+
+            exercise.WorkoutProgramId = program.Id;
+            _context.Exercises.Add(exercise);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetProgram", new { name = program.Name }, exercise);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("{name}/logs")]
+        public IActionResult CreateLog(string name, [FromBody] Log log)
         {
+            if (name == null)
+            {
+                return BadRequest();
+            }
+            //get program to which we want to add to
+            var program = _context.WorkoutPrograms
+                .Include(wp => wp.exercises)
+                .Include(wp => wp.logs)
+                .SingleOrDefault(m => m.Name == name);
+
+            log.WorkoutProgramId = program.Id;
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetProgram", new { name = program.Name }, log);
         }
+
     }
 }

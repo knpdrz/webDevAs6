@@ -24,7 +24,6 @@ export class ProgramDataService {
   public getPrograms(): Promise<Program[]> {
       const someParam: number = 1;
       const url = this.theBaseUrl + "" + this.apiBaseUrl;
-     // const url: string = `${this.apiBaseUrl}`;
 
       return this.http
           .get(url)
@@ -46,30 +45,23 @@ export class ProgramDataService {
       .catch(this.handleError);
   }
 
-  getProgram2(name :string): Promise<Program>{
-    return this.getPrograms()
-      .then(programs => programs.find(program => program.name === name))
-      .catch(this.handleError);
-  }
-  
-
   private handleError(error: any): Promise<any>{
     console.error('sth has gone wrong', error);
     
     return Promise.reject(error.message || error);
   }
-
+//-------------------------program
   private headers = new Headers({'Content-Type': 'application/json'});
 
   create(name: string): Promise<Program> {
-    const url = this.apiBaseUrl+"programs";
+    const url = this.theBaseUrl + "" + this.apiBaseUrl;
     const data = JSON.stringify({name: name});
-  
+      
     const pheaders = new Headers();
     pheaders.append('Content-Type', 'application/json');
-    pheaders.append('Authorization', 'Bearer ' +
+    /*pheaders.append('Authorization', 'Bearer ' +
             this.auth.getToken());
-       
+       */
     var options = new RequestOptions({headers: pheaders});
 
     return this.http
@@ -80,19 +72,23 @@ export class ProgramDataService {
   }
 
   //------------------exercises
-  createExercise(programName: string, exercise:Exercise): Promise<Exercise> {
-    const url = this.apiBaseUrl+"programs/"+programName+"/exercises";
+  createExercise(programName: string, exercise: Exercise): Promise<Exercise> {
+    const url = this.theBaseUrl + "" + this.apiBaseUrl + "/" +programName + "/exercises";
     const data = JSON.stringify({
           name: exercise.name, 
           repstime: exercise.repstime,
           sets: exercise.sets,
-          description: exercise.description });
-  
+          description: exercise.description
+    });
+    console.log("url =");
+    console.log(url);
+    console.log("creating ex ");
+    console.log(data);
     const pheaders = new Headers();
     pheaders.append('Content-Type', 'application/json');
-    pheaders.append('Authorization', 'Bearer ' +
+    /*pheaders.append('Authorization', 'Bearer ' +
             this.auth.getToken());
-       
+       */
     var options = new RequestOptions({headers: pheaders});
 
     return this.http
@@ -104,16 +100,19 @@ export class ProgramDataService {
 
   //------------------logs
   createLog(programName: string, log:Log): Promise<Log> {
-    console.log('saving log with name: '+this.auth.currentUser().username + " email = "+this.auth.currentUser().email);
-    const url = this.apiBaseUrl+"programs/"+programName+"/logs";
-    const data = JSON.stringify({
-      username: "", 
-      date: log.date });
-  
+      const url = this.theBaseUrl + "" + this.apiBaseUrl + "/"+ programName + "/logs";
+      const data = JSON.stringify({
+          username: log.username, 
+            date: log.date });
+      console.log("url =");
+      console.log(url);
+      console.log("creating log ");
+      console.log(data);
+
     const pheaders = new Headers();
     pheaders.append('Content-Type', 'application/json');
-    pheaders.append('Authorization', 'Bearer ' +
-            this.auth.getToken());
+    /*pheaders.append('Authorization', 'Bearer ' +
+            this.auth.getToken());*/
        
     var options = new RequestOptions({headers: pheaders});
 

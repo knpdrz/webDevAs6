@@ -13,7 +13,7 @@ export class LogFormComponent{
   
   onSubmit(form : NgForm) { 
     var log = new Log(
-      '',
+      form.value.username,
       form.value.date,
      );
 

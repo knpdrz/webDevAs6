@@ -1,28 +1,50 @@
 
-<h3>Below you can see the workouts list</h3>
-
-<div class="container">
-  <div class="row">
-    <div class="col-8 " style="background: none">
-      <ul class="list-group col-4 ">
-        <a *ngFor="let program of programs" 
-        [routerLink]="['/programs', program.name]"
-        class="list-group-item">
-        {{program.name}}
-        </a>
-      </ul>
+<h4 class='text-info text-center'>The list of all workouts</h4>
+    <div class="navbar-collapse collapse">
+        <ul class='nav navbar-nav'>
+            <li *ngFor="let program of programs" >
+                <a [routerLink]="['/programs', program.name]"><span></span>{{program.name}}</a>
+            </li>
+        </ul>
     </div>
-  </div>
-  <br>
-  <div class="row">
-  <!--  <div id="add-program-box" *ngIf="auth.loggedIn()">
-      <label>Add a new program:</label> 
-      <input class="form-control col-5" id="program-name-input" #programName placeholder="program name"/>
-      &nbsp;
-      <button class="btn btn-outline-success" id="add-btn"
-        (click)="add(programName.value); programName.value=''">Add</button>
-    </div>  -->
-  </div>  
-  
+<br />
+    <h4 class='text-info text-center'>Add a new program</h4>
+<div class="navbar-collapse collapse">
+    <div class="nav navbar-nav">
 
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" #programName placeholder="program name"  aria-label="program name">
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="add(programName.value); programName.value=''">Add</button>
+        </form>
+
+        
+    </div>
 </div>
+
+    <!--
+        <div class="container">
+            <div class="row">
+                <div class="col-8 " style="background: none">
+                    <ul class="list-group col-4 ">
+                        <a *ngFor="let program of programs"
+                           [routerLink]="['/programs', program.name]"
+                           class="list-group-item">
+                            {{program.name}}
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div id="add-program-box">-->
+    <!-- *ngIf="auth.loggedIn()">-->
+    <!--</div>
+    </div>-->
+    <!-- </div>-->
+    <!--<label>Add a new program:</label>
+                    <input class="form-control col-5" id="program-name-input" #programName placeholder="program name" />
+                    &nbsp;
+                    <button class="btn btn-outline-success" id="add-btn"
+                            (click)="add(programName.value); programName.value=''">
+                        Add
+                    </button>-->
