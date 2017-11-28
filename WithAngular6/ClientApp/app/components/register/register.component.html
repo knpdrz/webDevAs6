@@ -1,0 +1,16 @@
+
+
+<h4 *ngIf="!auth.loggedIn()" class='text-info text-center'>Register</h4>
+<div class="navbar-collapse collapse">
+    <div class="nav navbar-nav">
+        <form class="form-inline my-2 my-lg-0" #f="ngForm" (ngSubmit)="onRegister(f)" *ngIf="!auth.loggedIn()">
+            <input class="form-control mr-sm-2" type="text" [(ngModel)]="username" placeholder="username" ngControl="username"
+                   name="username">
+            <input class="form-control mr-sm-2" type="text" [(ngModel)]="email" name="email" placeholder="email" ngControl="email">
+            <input class="form-control mr-sm-2" type="password" [(ngModel)]="password" name="password"
+                   placeholder="password" ngControl="password">
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Register</button>
+        </form>
+
+    </div>
+</div>

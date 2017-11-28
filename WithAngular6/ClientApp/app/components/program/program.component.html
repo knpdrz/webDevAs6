@@ -34,15 +34,16 @@
   </div> 
   <div class="clear"></div>
 
-  <!--exercise form-->    
- <div id="ex-form">
-    <exercise-form (exerciseFormSubmitted)="exerciseFormSubmitted($event)"></exercise-form>
-  </div>
-  <br>
-    
-  <!--log form-->
-  <log-form (logFormSubmitted)="logFormSubmitted($event)"></log-form>
-  <br>
- 
-</div>
+    <div *ngIf="auth.loggedIn()">
+        <!--exercise form-->
+        <div id="ex-form">
+            <exercise-form (exerciseFormSubmitted)="exerciseFormSubmitted($event)"></exercise-form>
+        </div>
+        <br>
 
+        <!--log form-->
+        <log-form (logFormSubmitted)="logFormSubmitted($event)"></log-form>
+        <br>
+    </div>
+
+</div>

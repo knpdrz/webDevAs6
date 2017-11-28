@@ -22,7 +22,6 @@ export class ProgramDataService {
 
    
   public getPrograms(): Promise<Program[]> {
-      const someParam: number = 1;
       const url = this.theBaseUrl + "" + this.apiBaseUrl;
 
       return this.http
@@ -50,7 +49,7 @@ export class ProgramDataService {
     
     return Promise.reject(error.message || error);
   }
-//-------------------------program
+//-----------------------------------program
   private headers = new Headers({'Content-Type': 'application/json'});
 
   create(name: string): Promise<Program> {
@@ -59,9 +58,9 @@ export class ProgramDataService {
       
     const pheaders = new Headers();
     pheaders.append('Content-Type', 'application/json');
-    /*pheaders.append('Authorization', 'Bearer ' +
+    pheaders.append('Authorization', 'Bearer ' +
             this.auth.getToken());
-       */
+       
     var options = new RequestOptions({headers: pheaders});
 
     return this.http
@@ -86,9 +85,9 @@ export class ProgramDataService {
     console.log(data);
     const pheaders = new Headers();
     pheaders.append('Content-Type', 'application/json');
-    /*pheaders.append('Authorization', 'Bearer ' +
+    pheaders.append('Authorization', 'Bearer ' +
             this.auth.getToken());
-       */
+       
     var options = new RequestOptions({headers: pheaders});
 
     return this.http
@@ -111,8 +110,8 @@ export class ProgramDataService {
 
     const pheaders = new Headers();
     pheaders.append('Content-Type', 'application/json');
-    /*pheaders.append('Authorization', 'Bearer ' +
-            this.auth.getToken());*/
+    pheaders.append('Authorization', 'Bearer ' +
+            this.auth.getToken());
        
     var options = new RequestOptions({headers: pheaders});
 

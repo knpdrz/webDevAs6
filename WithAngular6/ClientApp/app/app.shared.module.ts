@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+
 import { HomeListComponent } from './components/home-list/home-list.component';
 import { ProgramComponent } from './components/program/program.component';
 import { ExerciseFormComponent } from './components/exercise-form/exercise-form.component';
@@ -23,6 +25,7 @@ import { LogFormComponent } from './components/log-form/log-form.component';
         FetchDataComponent,
         HomeComponent,
         LoginComponent,
+        RegisterComponent,
         HomeListComponent,
         ProgramComponent,
         ExerciseFormComponent,

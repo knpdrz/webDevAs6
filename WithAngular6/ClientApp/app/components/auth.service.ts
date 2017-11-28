@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { User } from './user';
@@ -10,17 +10,19 @@ interface AuthResponse {
 
 @Injectable()
 export class AuthService {
+    private theBaseUrl: String;
+    private apiBaseUrl = 'api/account';
 
-    private apiBaseUrl = '/api/'; 
+    constructor(private http: Http,
+        @Inject('BASE_URL') baseUrl: string) {
+        this.theBaseUrl = baseUrl;
+    }
 
-  constructor(private http: Http) {}
-
-
-  //----------login
+  //--------------------------login
   public login(user: User) {
-    const url = `${this.apiBaseUrl}/login`;
+      const url = this.theBaseUrl + "" + this.apiBaseUrl + "/jwtlogin";
       this.http.post(url, user).subscribe(data => {
-        this.saveToken(data.json()['token']);
+        this.saveToken(data.json());
         return true;
     },
     // Errors will call this callback instead:
@@ -37,19 +39,19 @@ export class AuthService {
     });
   }
 
-  //---------logout
+  //---------------------------------logout
   public logout(){
     //removing data from local storage
     this.removeToken();
   }
 
 
-  //-----------------register
+  //---------------------------------register
   public register(user: User) {
-    const url = `${this.apiBaseUrl}/register`;
+      const url = this.theBaseUrl + "" + this.apiBaseUrl + "/register";
       this.http.post(url, user).subscribe(data => {
-        console.log("== saving token "+data.json()['token']);
-        this.saveToken(data.json()['token']);
+        console.log("== saving token "+data.json());
+        this.saveToken(data.json());
         return true;
     },
     // Errors will call this callback instead:
@@ -67,41 +69,43 @@ export class AuthService {
   }
 
 
-//----------------managing token
+//-------------------------managing token
   private saveToken(token: string) {
-    window.localStorage['work-out-token'] = token;
+      console.log("saving token: ");
+      console.log(token);
+      localStorage['work-out-token'] = token;
   }
 
-  public getToken():string {
-    if (window.localStorage['work-out-token']) {
-      return window.localStorage['work-out-token'];
-    } else {
+  public getToken(): string {
+      if (typeof localStorage !== 'undefined' && localStorage !== null) {
+        if (localStorage['work-out-token']) {
+            return localStorage['work-out-token'];
+        }
+      }
       return '';
-    }
   }
 
   private removeToken(){
-    if (window.localStorage['work-out-token']) {
-      window.localStorage.removeItem('work-out-token');
+    if (localStorage['work-out-token']) {
+      localStorage.removeItem('work-out-token');
     } 
   }
 
-//-----------check if user is logged in
+//-----------------------------check if user is logged in
   public loggedIn() {
     const token = this.getToken();
     if (token) {
-      const payload = JSON.parse(window.atob(token.split('.')[1]));
-      return payload.exp > Date.now() / 1000;
-    } else {
-      return false;
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.exp > Date.now() / 1000;
     }
+    return false;
   }
 
 //---------returns logged in user or nothing if there is none
-  public currentUser(): User {
+  /*public currentUser(): User {
     if (this.loggedIn()) {
       const token = this.getToken();
-      const payload = JSON.parse(window.atob(token.split('.')[1]));
+      const payload = JSON.parse(atob(token.split('.')[1]));
 
       const user = new User();
       user.email = payload.email;
@@ -116,6 +120,6 @@ export class AuthService {
         userNull.password = "dummy";
         return userNull;
     }
-  }
+  }*/
     
 }

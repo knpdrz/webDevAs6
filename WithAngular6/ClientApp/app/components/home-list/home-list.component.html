@@ -8,18 +8,20 @@
         </ul>
     </div>
 <br />
+
+<div *ngIf="auth.loggedIn()">
     <h4 class='text-info text-center'>Add a new program</h4>
-<div class="navbar-collapse collapse">
-    <div class="nav navbar-nav">
+    <div class="navbar-collapse collapse">
+        <div class="nav navbar-nav">
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" #programName placeholder="program name"  aria-label="program name">
-            <button class="btn btn-outline-success my-2 my-sm-0" (click)="add(programName.value); programName.value=''">Add</button>
-        </form>
-
-        
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" #programName placeholder="program name" aria-label="program name">
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="add(programName.value); programName.value=''">Add</button>
+            </form>
+        </div>
     </div>
 </div>
+
 
     <!--
         <div class="container">

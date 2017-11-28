@@ -8,8 +8,7 @@ namespace WithAngular6.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser(string userName) : base(userName)
-        {
-        }
+        public String Name { get; set; }
+        
     }
 }

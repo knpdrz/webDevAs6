@@ -12,7 +12,7 @@ namespace WithAngular6.Models
     {
         private const string adminUser = "Admin";
         private const string adminPassword = "Secret123$";
-        public static async void EnsurePopulated(IApplicationBuilder app)
+       /* public static async void EnsurePopulated(IApplicationBuilder app)
         {
             UserManager<ApplicationUser> userManager = app.ApplicationServices
             .GetRequiredService<UserManager<ApplicationUser>>();
@@ -22,6 +22,6 @@ namespace WithAngular6.Models
                 user = new ApplicationUser("Admin");
                 await userManager.CreateAsync(user, adminPassword);
             }
-        }
+        }*/
     }
 }

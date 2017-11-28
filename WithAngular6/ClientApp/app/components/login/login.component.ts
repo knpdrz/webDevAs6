@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin(form :NgForm) {
+  onLogin(form: NgForm) {
+
     var email = form.value.email;
     var password = form.value.password;
     
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     user.username = "dummy";
     user.password = password;
 
+      
     console.log("---onLogin called with credentials "+
     form.value.email+","+
     form.value.password);

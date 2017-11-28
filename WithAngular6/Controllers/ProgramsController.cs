@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using WithAngular6.Data;
 using WithAngular6.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -54,6 +55,7 @@ namespace WithAngular6
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create([FromBody] WorkoutProgram program)
         {
             _context.WorkoutPrograms.Add(program);
@@ -63,6 +65,7 @@ namespace WithAngular6
         }
 
         [HttpPost("{name}/exercises")]
+        [Authorize]
         public IActionResult CreateExercise(string name, [FromBody] Exercise exercise)
         {
             if (name == null)
@@ -83,6 +86,7 @@ namespace WithAngular6
         }
 
         [HttpPost("{name}/logs")]
+        [Authorize]
         public IActionResult CreateLog(string name, [FromBody] Log log)
         {
             if (name == null)
